@@ -225,7 +225,7 @@ int main()
     // cout << endl;
     // head = DeleteAtGivenIndex(head, 7);
     // printLinkedList(head);
-    head = DeleteGivenValue(head, 88);
+    head = DeleteGivenValue(head, 2);
     printLinkedList(head);
     return 0;
 }

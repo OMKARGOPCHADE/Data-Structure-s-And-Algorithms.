@@ -109,6 +109,72 @@ Node *insertATPos(int pos, Node *head, int value)
     }
     return head;
 }
+//Delete node from end
+Node* deleteEndNode(Node* head)
+{
+    if(head==nullptr||head->next==nullptr)
+    {
+        delete head;
+        return nullptr;
+    }
+    Node* temp = head;
+    while(temp->next!=nullptr)
+    {
+        temp = temp->next;
+    }
+    temp->prev->next = nullptr;
+    delete temp;
+    return head;
+}
+//Delete node from begin
+Node* deleteBeginNode(Node* head)
+{
+    if(head==nullptr||head->next==nullptr)
+    {
+        delete head;
+        return nullptr;
+    }
+    Node* temp = head;
+    head = head->next;
+    head->prev = nullptr;
+    delete temp;
+    return head;
+}
+//Delete node from given position
+Node* deleteAtGivenPos(Node* head, int pos)
+{
+    if(head==nullptr || head->next==nullptr)
+    {
+        delete head;
+        return nullptr;
+    }
+    if(pos==1)
+    {
+        Node* temp = head;
+        head = head->next;
+        head->prev = nullptr;
+        delete temp;
+        return head;
+    }
+    Node* temp = head;
+    while(--pos && temp->next!=nullptr)
+    {
+        temp = temp->next;
+    }
+    if(temp->next)
+    {
+        Node* dump = temp;
+        temp->prev->next = temp->next;
+        temp->next->prev = temp->prev;
+        delete dump;
+    }
+    else
+    {
+        temp->prev->next=nullptr;
+        delete temp;
+    }
+    return head;
+}
 int main()
 {
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -139,7 +205,16 @@ int main()
     // print_DLL(head);
     // while(head->prev!=nullptr)head=head->prev;
     // print_DLL(head);
-    head = insertATPos(11, head, 55);
+    //head = insertATPos(5, head, 55);
+    print_DLL(head);
+    cout<<endl;
+    // head = deleteEndNode(head);
+    // print_DLL(head);
+    // cout<<endl;
+    // head = deleteBeginNode(head);
+    // print_DLL(head);
+    // cout<<endl;
+    head = deleteAtGivenPos(head,1);
     print_DLL(head);
     return 0;
 }
