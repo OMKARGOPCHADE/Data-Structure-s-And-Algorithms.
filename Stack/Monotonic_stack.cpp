@@ -48,6 +48,8 @@ vector<int> Mono_vec_arr_dec(vector<int> v)
     }
     return arr;
 }
+// Stack Using Array
+
 int main()
 {
     vector<int> v = {1, 7, 9, 5, 8, 7, 6};
